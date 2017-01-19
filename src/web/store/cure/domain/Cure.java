@@ -3,7 +3,8 @@ package web.store.cure.domain;
 public class Cure {
 	private int cure_id;
 	private String cure_name;
-	private String cure_cost;
+	private String cure_doctor;
+	private double cure_cost;
 	private String image;
 	private int cid;
 	private String cure_extra;
@@ -19,10 +20,16 @@ public class Cure {
 	public void setCure_name(String cure_name) {
 		this.cure_name = cure_name;
 	}
-	public String getCure_cost() {
+	public String getCure_doctor() {
+		return cure_doctor;
+	}
+	public void setCure_doctor(String cure_doctor) {
+		this.cure_doctor = cure_doctor;
+	}
+	public double getCure_cost() {
 		return cure_cost;
 	}
-	public void setCure_cost(String cure_cost) {
+	public void setCure_cost(double cure_cost) {
 		this.cure_cost = cure_cost;
 	}
 	public String getImage() {
@@ -42,6 +49,13 @@ public class Cure {
 	}
 	public void setCure_extra(String cure_extra) {
 		this.cure_extra = cure_extra;
+	}
+	@Override
+	public String toString() {
+		return "Cure [cure_id=" + cure_id + ", cure_name=" + cure_name
+				+ ", cure_doctor=" + cure_doctor + ", cure_cost=" + cure_cost
+				+ ", image=" + image + ", cid=" + cid + ", cure_extra="
+				+ cure_extra + "]";
 	}
 	
 }

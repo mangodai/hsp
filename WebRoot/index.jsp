@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -28,8 +29,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- for bootstrap working -->
 <script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
 <!-- //for bootstrap working -->
-<link href='http://fonts.useso.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-<link href='http://fonts.useso.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<link href='css/fonts1.css' rel='stylesheet' type='text/css'>
+<link href='css/fonts2.css' rel='stylesheet' type='text/css'>
 <!-- timer -->
 <link rel="stylesheet" href="css/jquery.countdown.css" />
 <!-- //timer -->
@@ -43,94 +44,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 <!-- header -->
-	<div class="header">
-		<div class="container">
-			<div class="header-grid">
-				<div class="header-grid-left animated wow slideInLeft" data-wow-delay=".5s">
-					<ul>
-						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:965557340@qq.com">965557340@qq.com</a></li>
-						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>182 <span>7023</span> 5552</li>
-						<li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="login.jsp">Login</a></li>
-						<li><i class="glyphicon glyphicon-book" aria-hidden="true"></i><a href="register.jsp">Register</a></li>
-					</ul>
-				</div>
-				<div class="header-grid-right animated wow slideInRight" data-wow-delay=".5s">
-					<ul class="social-icons">
-						<li><a href="#" class="facebook"></a></li>
-						<li><a href="#" class="twitter"></a></li>
-						<li><a href="#" class="g"></a></li>
-						<li><a href="#" class="instagram"></a></li>
-					</ul>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-			<div class="logo-nav">
-				<div class="logo-nav-left animated wow zoomIn" data-wow-delay=".5s">
-					<h1><a href="index.jsp">Hospital <span>By MangoDai</span></a></h1>
-				</div>
-				<div class="logo-nav-left1">
-					<nav class="navbar navbar-default">
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<div class="navbar-header nav_2">
-						<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-					</div>
-					<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
-						<ul class="nav navbar-nav">
-							<li><a href="index.jsp">Home</a></li>	
-							<!-- Mega Menu -->
-							<li><a href="products.jsp">Products</a></li>
-							<li><a href="mail.jsp">Mail Us</a></li>
-						</ul>
-					</div>
-					</nav>
-				</div>
-				<div class="logo-nav-right">
-					<div class="search-box">
-						<div id="sb-search" class="sb-search">
-							<form>
-								<input class="sb-search-input" placeholder="Enter your search term..." type="search" id="search">
-								<input class="sb-search-submit" type="submit" value="">
-								<span class="sb-icon-search"> </span>
-							</form>
-						</div>
-					</div>
-						<!-- search-scripts -->
-						<script src="js/classie.js"></script>
-						<script src="js/uisearch.js"></script>
-							<script>
-								new UISearch( document.getElementById( 'sb-search' ) );
-							</script>
-						<!-- //search-scripts -->
-				</div>
-				<div class="header-right">
-					<div class="cart box_1">
-						<a href="checkout.jsp">
-							<h3> 
-							<div class="total">
-								<span class="simpleCart_total">12.01</span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)
-								<img src="images/bag.png" alt="" />
-							</div>
-							</h3>
-						</a>
-						<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
-						<div class="clearfix"> </div>
-					</div>	
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-		</div>
-	</div>
+<%@ include file="common/header.jsp" %>
 <!-- //header -->
 <!-- banner -->
 	<div class="banner">
 		<div class="container">
 			<div class="banner-info animated wow zoomIn" data-wow-delay=".5s">
-				<h3>Online Hospital Order</h3>
+				<h3>Online Hospital System</h3>
 				<h4><span>Free <i>Facility</i></span></h4>
 				<div class="wmuSlider example1">
 					<div class="wmuSliderWrapper">
@@ -167,30 +87,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 <!-- //banner -->
 <!-- footer -->
-	<div class="footer">
-		<div class="container">
-			<div class="footer-grids">
-				<div class="col-md-3 footer-grid animated wow slideInLeft" data-wow-delay=".5s">
-					<h3>关于我们</h3>
-					<p>戴超.2017年寒假作业<span>学习使用Bootstrap和Java Web</span></p>
-				</div>
-				<div class="col-md-3 footer-grid animated wow slideInLeft" data-wow-delay=".6s">
-					<h3>联系信息</h3>
-					<ul>
-						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Mangodai<span>China Jxau.</span></li>
-						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">965557340@qq.com</a></li>
-					</ul>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-			<div class="footer-logo animated wow slideInUp" data-wow-delay=".5s">
-				<h2><a href="index.jsp">Hospital<span>By MangoDai</span></a></h2>
-			</div>
-			<div class="copy-right animated wow slideInUp" data-wow-delay=".5s">
-				<p>Copyright &copy; 2017.By Mangodai.</p>
-			</div>
-		</div>
-	</div>
+<%@ include file="common/footer.jsp" %>
 <!-- //footer -->
 </body>
 </html>

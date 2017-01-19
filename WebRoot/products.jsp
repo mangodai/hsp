@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -30,8 +31,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- for bootstrap working -->
 	<script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
 <!-- //for bootstrap working -->
-<link href='http://fonts.useso.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-<link href='http://fonts.useso.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<link href='css/fonts1.css' rel='stylesheet' type='text/css'>
+<link href='css/fonts2.css' rel='stylesheet' type='text/css'>
 <!-- animation-effect -->
 <link href="css/animate.min.css" rel="stylesheet"> 
 <script src="js/wow.min.js"></script>
@@ -42,124 +43,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 <!-- header -->
-		<div class="header">
-		<div class="container">
-			<div class="header-grid">
-				<div class="header-grid-left animated wow slideInLeft" data-wow-delay=".5s">
-					<ul>
-						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:965557340@qq.com">965557340@qq.com</a></li>
-						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>182 <span>7023</span> 5552</li>
-						<li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="login.jsp">Login</a></li>
-						<li><i class="glyphicon glyphicon-book" aria-hidden="true"></i><a href="register.jsp">Register</a></li>
-					</ul>
-				</div>
-				<div class="header-grid-right animated wow slideInRight" data-wow-delay=".5s">
-					<ul class="social-icons">
-						<li><a href="#" class="facebook"></a></li>
-						<li><a href="#" class="twitter"></a></li>
-						<li><a href="#" class="g"></a></li>
-						<li><a href="#" class="instagram"></a></li>
-					</ul>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-			<div class="logo-nav">
-				<div class="logo-nav-left animated wow zoomIn" data-wow-delay=".5s">
-					<h1><a href="index.jsp">Hospital <span>By MangoDai</span></a></h1>
-				</div>
-				<div class="logo-nav-left1">
-					<nav class="navbar navbar-default">
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<div class="navbar-header nav_2">
-						<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-					</div>
-					<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
-						<ul class="nav navbar-nav">
-							<li><a href="index.jsp">Home</a></li>	
-							<!-- Mega Menu -->
-							<li><a href="products.jsp">Products</a></li>
-							<li><a href="mail.jsp">Mail Us</a></li>
-						</ul>
-					</div>
-					</nav>
-				</div>
-				<div class="logo-nav-right">
-					<div class="search-box">
-						<div id="sb-search" class="sb-search">
-							<form>
-								<input class="sb-search-input" placeholder="Enter your search term..." type="search" id="search">
-								<input class="sb-search-submit" type="submit" value="">
-								<span class="sb-icon-search"> </span>
-							</form>
-						</div>
-					</div>
-						<!-- search-scripts -->
-						<script src="js/classie.js"></script>
-						<script src="js/uisearch.js"></script>
-							<script>
-								new UISearch( document.getElementById( 'sb-search' ) );
-							</script>
-						<!-- //search-scripts -->
-				</div>
-				<div class="header-right">
-					<div class="cart box_1">
-						<a href="checkout.jsp">
-							<h3> <div class="total">
-								<span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>
-								<img src="images/bag.png" alt="" />
-							</h3>
-						</a>
-						<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
-						<div class="clearfix"> </div>
-					</div>	
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-		</div>
-	</div>
+<%@ include file="common/header.jsp" %>
 <!-- //header -->
-<!-- go top-->
-<div id="goTop" class="goTop"></div>
-<script type="text/javascript">
-    $(window).scroll(function(){
-        var sc=$(window).scrollTop();
-        var rwidth=$(window).width()+$(document).scrollLeft();
-        var rheight=$(window).height()+$(document).scrollTop();
-        if(sc>0){
-            $("#goTop").css("display","block");
-            $("#goTop").css("left",(rwidth-80)+"px");
-            $("#goTop").css("top",(rheight-120)+"px");
-        }else{
-            $("#goTop").css("display","none");
-        }
-    });
-    $("#goTop").click(function(){
-        $('body,html').animate({scrollTop:0},300);
-    });
-</script>
-<!-- breadcrumbs -->
-	<div class="breadcrumbs">
-		<div class="container">
-			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
-				<li><a href="index.jsp"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Products</li>
-			</ol>
-		</div>
-	</div>
+
+<!-- products-->
 	<div class="products">
 		<div class="container">
 			<div class="col-md-4 products-left">
-				<div class="filter-price animated wow slideInUp" data-wow-delay=".5s">
-					<h3>Filter By Price</h3>
+<!-- 				<div class="filter-price animated wow slideInUp" data-wow-delay=".5s">
+					<h3>价格过滤</h3>
 					<ul class="dropdown-menu1">
 							<li><a href="">								               
-							<div id="slider-range"></div>							
-							<input type="text" id="amount" style="border: 0" />
+							<div id="slider-range">
+							</div>							
+								<input type="text" id="amount" style="border: 0" />
 							</a></li>	
 					</ul>
 						<script type='text/javascript'>//<![CDATA[ 
@@ -176,9 +73,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						});//]]>
 						</script>
 						<script type="text/javascript" src="js/jquery-ui.min.js"></script>
-					 <!---->
-				</div>
-				<div class="categories animated wow slideInUp" data-wow-delay=".5s">
+					
+				</div> -->
+				<div class="categories animated wow slideInUp" data-wow-delay=".1s">
 					<h3>Categories</h3>
 					<ul class="cate">
 						<li><a href="products.jsp">Best Selling</a> <span>(15)</span></li>
@@ -186,23 +83,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<ul>
 								<li><a href="products.jsp">Accessories</a> <span>(2)</span></li>
 								<li><a href="products.jsp">Coats & Jackets</a> <span>(5)</span></li>
-								<li><a href="products.jsp">Jeans</a> <span>(1)</span></li>
-								<li><a href="products.jsp">New Arrivals</a> <span>(0)</span></li>
-								<li><a href="products.jsp">Suits</a> <span>(1)</span></li>
-								<li><a href="products.jsp">Casual Shirts</a> <span>(0)</span></li>
-							</ul>
-						<li><a href="products.jsp">Sales</a> <span>(15)</span></li>
-						<li><a href="products.jsp">Woman</a> <span>(15)</span></li>
-							<ul>
-								<li><a href="products.jsp">Accessories</a> <span>(2)</span></li>
-								<li><a href="products.jsp">New Arrivals</a> <span>(0)</span></li>
-								<li><a href="products.jsp">Dresses</a> <span>(1)</span></li>
-								<li><a href="products.jsp">Casual Shirts</a> <span>(0)</span></li>
-								<li><a href="products.jsp">Shorts</a> <span>(4)</span></li>
 							</ul>
 					</ul>
 				</div>
-				<div class="new-products animated wow slideInUp" data-wow-delay=".5s">
+				<div class="new-products animated wow slideInUp" data-wow-delay=".1s">
 					<h3>New Products</h3>
 					<div class="new-products-grids">
 						<div class="new-products-grid">
@@ -297,7 +181,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 					</div>
 				</div>
-				<div class="men-position animated wow slideInUp" data-wow-delay=".5s">
+				<div class="men-position animated wow slideInUp" data-wow-delay=".1s">
 					<a href="single.jsp"><img src="images/27.jpg" alt=" " class="img-responsive" /></a>
 					<div class="men-position-pos">
 						<h4>Summer collection</h4>
@@ -307,7 +191,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="col-md-8 products-right">
 				<div class="products-right-grid">
-					<div class="products-right-grids animated wow slideInRight" data-wow-delay=".5s">
+	<!-- 				<div class="products-right-grids animated wow slideInRight" data-wow-delay=".5s">
 						<div class="sorting">
 							<select id="country" onchange="change_country(this.value)" class="frm-field required sect">
 								<option value="null">Default sorting</option>
@@ -325,14 +209,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</select>
 						</div>
 						<div class="clearfix"> </div>
-					</div>
+					</div> -->
 					<div class="products-right-grids-position animated wow slideInRight" data-wow-delay=".5s">
-						<img src="images/18.jpg" alt=" " class="img-responsive" />
+						<img src="images/products.jpg" alt=" " class="img-responsive" />
 						<div class="products-right-grids-position1">
-							<h4>2016 New Collection</h4>
-							<p>Temporibus autem quibusdam et aut officiis debitis aut rerum 
-								necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae 
-								non recusandae.</p>
+							<h4>具体治疗手段</h4>
+							<p>我们拥有许多治疗手段,你可以在右边查看分类,也可以直接选择.</p>
 						</div>
 					</div>
 				</div>
@@ -667,30 +549,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 <!-- //breadcrumbs -->
 <!-- footer -->
-	<div class="footer">
-		<div class="container">
-			<div class="footer-grids">
-				<div class="col-md-3 footer-grid animated wow slideInLeft" data-wow-delay=".5s">
-					<h3>关于我们</h3>
-					<p>戴超.2017年寒假作业<span>学习使用Bootstrap和Java Web</span></p>
-				</div>
-				<div class="col-md-3 footer-grid animated wow slideInLeft" data-wow-delay=".6s">
-					<h3>联系信息</h3>
-					<ul>
-						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Mangodai<span>China Jxau.</span></li>
-						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">965557340@qq.com</a></li>
-					</ul>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-			<div class="footer-logo animated wow slideInUp" data-wow-delay=".5s">
-				<h2><a href="index.jsp">Hospital<span>By MangoDai</span></a></h2>
-			</div>
-			<div class="copy-right animated wow slideInUp" data-wow-delay=".5s">
-				<p>Copyright &copy; 2017.By Mangodai.</p>
-			</div>
-		</div>
-	</div>
+<%@ include file="common/footer.jsp" %>
 <!-- //footer -->
 </body>
 </html>

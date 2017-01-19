@@ -1,4 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -28,8 +31,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- for bootstrap working -->
 	<script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
 <!-- //for bootstrap working -->
-<link href='http://fonts.useso.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-<link href='http://fonts.useso.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<link href='css/fonts1.css' rel='stylesheet' type='text/css'>
+<link href='css/fonts2.css' rel='stylesheet' type='text/css'>
 <!-- animation-effect -->
 <link href="css/animate.min.css" rel="stylesheet"> 
 <script src="js/wow.min.js"></script>
@@ -37,262 +40,104 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
  new WOW().init();
 </script>
 <!-- //animation-effect -->
+<!-- datetimepicker -->
+<link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/>
+<script src="js/jquery.js"></script>
+<script src="js/jquery.datetimepicker.full.js"></script>
+<!-- //datetimepicker -->
 </head>
 <body>
 <!-- header -->
-	<div class="header">
-		<div class="container">
-			<div class="header-grid">
-				<div class="header-grid-left animated wow slideInLeft" data-wow-delay=".5s">
-					<ul>
-						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:965557340@qq.com">965557340@qq.com</a></li>
-						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>182 <span>7023</span> 5552</li>
-						<li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="login.jsp">Login</a></li>
-						<li><i class="glyphicon glyphicon-book" aria-hidden="true"></i><a href="register.jsp">Register</a></li>
-					</ul>
-				</div>
-				<div class="header-grid-right animated wow slideInRight" data-wow-delay=".5s">
-					<ul class="social-icons">
-						<li><a href="#" class="facebook"></a></li>
-						<li><a href="#" class="twitter"></a></li>
-						<li><a href="#" class="g"></a></li>
-						<li><a href="#" class="instagram"></a></li>
-					</ul>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-			<div class="logo-nav">
-				<div class="logo-nav-left animated wow zoomIn" data-wow-delay=".5s">
-					<h1><a href="index.jsp">Hospital <span>By MangoDai</span></a></h1>
-				</div>
-				<div class="logo-nav-left1">
-					<nav class="navbar navbar-default">
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<div class="navbar-header nav_2">
-						<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-					</div>
-					<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
-						<ul class="nav navbar-nav">
-							<li><a href="index.jsp">Home</a></li>	
-							<!-- Mega Menu -->
-							<li><a href="products.jsp">Products</a></li>
-							<li><a href="mail.jsp">Mail Us</a></li>
-						</ul>
-					</div>
-					</nav>
-				</div>
-				<div class="logo-nav-right">
-					<div class="search-box">
-						<div id="sb-search" class="sb-search">
-							<form>
-								<input class="sb-search-input" placeholder="Enter your search term..." type="search" id="search">
-								<input class="sb-search-submit" type="submit" value="">
-								<span class="sb-icon-search"> </span>
-							</form>
-						</div>
-					</div>
-						<!-- search-scripts -->
-						<script src="js/classie.js"></script>
-						<script src="js/uisearch.js"></script>
-							<script>
-								new UISearch( document.getElementById( 'sb-search' ) );
-							</script>
-						<!-- //search-scripts -->
-				</div>
-				<div class="header-right">
-					<div class="cart box_1">
-						<a href="checkout.jsp">
-							<h3> <div class="total">
-								<span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>
-								<img src="images/bag.png" alt="" />
-							</h3>
-						</a>
-						<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
-						<div class="clearfix"> </div>
-					</div>	
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-		</div>
-	</div>
+<%@ include file="common/header.jsp" %>
 <!-- //header -->
-<!-- breadcrumbs -->
-	<div class="breadcrumbs">
-		<div class="container">
-			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
-				<li><a href="index.jsp"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Checkout Page</li>
-			</ol>
-		</div>
-	</div>
-<!-- //breadcrumbs -->
+
 <!-- checkout -->
 	<div class="checkout">
 		<div class="container">
-			<h3 class="animated wow slideInLeft" data-wow-delay=".5s">Your shopping cart contains: <span>3 Products</span></h3>
+			<h3 class="animated wow slideInLeft" data-wow-delay=".5s">你的购物车包含: <span>${fn:length(sessionScope.cart.cartItems) }个项目</span></h3>
 			<div class="checkout-right animated wow slideInUp" data-wow-delay=".5s">
+			<!-- 如果空 -->
+			<c:choose>
+			<c:when test="${empty sessionScope.cart or fn:length(sessionScope.cart.cartItems) eq 0}">
+				<img src="<c:url value='/images/nullcart.jpg'/>" class="img-responsive" alt="Responsive image" />
+			</c:when>
+			<c:otherwise>
+				<a href="<c:url value='/CartServlet?method=clear'/>" ><button type="button" class="btn btn-warning">清空购物车</button></a>			
 				<table class="timetable_sub">
 					<thead>
 						<tr>
-							<th>SL No.</th>	
-							<th>Product</th>
-							<th>Quality</th>
-							<th>Product Name</th>
-							<th>Service Charges</th>
-							<th>Price</th>
-							<th>Remove</th>
+							<th>序号</th>	
+							<th>产品</th>
+							<th>数量</th>
+							<th>产品名称</th>
+							<th>医疗技师</th>
+							<th>价格</th>
+							<th>删除</th>
 						</tr>
 					</thead>
-					<tr class="rem1">
-						<td class="invert">1</td>
+
+					<c:set var="i" value="1"/>
+					<c:forEach items="${sessionScope.cart.cartItems}" var="temp" >
+					<tr class="rem${i }">
+						<td class="invert">${i }</td>
+						<c:set var="i" value="${i+1 }"/>
 						<td class="invert-image"><a href="single.jsp"><img src="images/22.jpg" alt=" " class="img-responsive" /></a></td>
 						<td class="invert">
 							 <div class="quantity"> 
-								<div class="quantity-select">                           
+<!-- 								<div class="quantity-select">                           
 									<div class="entry value-minus">&nbsp;</div>
-									<div class="entry value"><span>1</span></div>
 									<div class="entry value-plus active">&nbsp;</div>
-								</div>
+								</div> -->
+									<div class="entry value"><span>${temp.count }</span></div>
 							</div>
 						</td>
-						<td class="invert">Black Shoe</td>
-						<td class="invert">$5.00</td>
-						<td class="invert">$290.00</td>
-						<td class="invert">
-							<div class="rem">
-								<div class="close1"> </div>
-							</div>
-							<script>$(document).ready(function(c) {
-								$('.close1').on('click', function(c){
-									$('.rem1').fadeOut('slow', function(c){
-										$('.rem1').remove();
-									});
-									});	  
-								});
-						   </script>
-						</td>
+						<td class="invert">${temp.cure.cure_name }</td>
+						<td class="invert">${temp.cure.cure_doctor }</td>
+						<td class="invert">¥<span class="badge badge-danger">${temp.cure.cure_cost }</span></td> 
+						<td class="invert"><a href=" <c:url value='/CartServlet?method=delete&cure_id=${temp.cure.cure_id }' /> "><button type="button" class="btn btn-danger">删除该项</button></a></td>
 					</tr>
-					<tr class="rem2">
-						<td class="invert">2</td>
-						<td class="invert-image"><a href="single.jsp"><img src="images/30.jpg" alt=" " class="img-responsive" /></a></td>
-						<td class="invert">
-							 <div class="quantity"> 
-								<div class="quantity-select">                           
-									<div class="entry value-minus">&nbsp;</div>
-									<div class="entry value"><span>1</span></div>
-									<div class="entry value-plus active">&nbsp;</div>
-								</div>
-							</div>
-						</td>
-						<td class="invert">Centre Table</td>
-						<td class="invert">$5.00</td>
-						<td class="invert">$250.00</td>
-						<td class="invert">
-							<div class="rem">
-								<div class="close2"> </div>
-							</div>
-							<script>$(document).ready(function(c) {
-								$('.close2').on('click', function(c){
-									$('.rem2').fadeOut('slow', function(c){
-										$('.rem2').remove();
-									});
-									});	  
-								});
-						   </script>
-						</td>
-					</tr>
-					<tr class="rem3">
-						<td class="invert">3</td>
-						<td class="invert-image"><a href="single.jsp"><img src="images/11.jpg" alt=" " class="img-responsive" /></a></td>
-						<td class="invert">
-							 <div class="quantity"> 
-								<div class="quantity-select">                           
-									<div class="entry value-minus">&nbsp;</div>
-									<div class="entry value"><span>1</span></div>
-									<div class="entry value-plus active">&nbsp;</div>
-								</div>
-							</div>
-						</td>
-						<td class="invert">Stone Bangles</td>
-						<td class="invert">$5.00</td>
-						<td class="invert">$299.00</td>
-						<td class="invert">
-							<div class="rem">
-								<div class="close3"> </div>
-							</div>
-							<script>$(document).ready(function(c) {
-								$('.close3').on('click', function(c){
-									$('.rem3').fadeOut('slow', function(c){
-										$('.rem3').remove();
-									});
-									});	  
-								});
-						   </script>
-						</td>
-					</tr>
-								<!--quantity-->
-									<script>
-									$('.value-plus').on('click', function(){
-										var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)+1;
-										divUpd.text(newVal);
-									});
-									$('.value-minus').on('click', function(){
-										var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)-1;
-										if(newVal>=1) divUpd.text(newVal);
-									});
-									</script>
-								<!--quantity-->
+					</c:forEach>
 				</table>
-			</div>
 			<div class="checkout-left">	
 				<div class="checkout-left-basket animated wow slideInLeft" data-wow-delay=".5s">
-					<h4>Continue to basket</h4>
 					<ul>
-						<li>Product1 <i>-</i> <span>$250.00 </span></li>
-						<li>Product2 <i>-</i> <span>$290.00 </span></li>
-						<li>Product3 <i>-</i> <span>$299.00 </span></li>
-						<li>Total Service Charges <i>-</i> <span>$15.00</span></li>
-						<li>Total <i>-</i> <span>$854.00</span></li>
+					<c:forEach items="${sessionScope.cart.cartItems}" var="temp" >
+						<li>${temp.cure.cure_name }<i>-</i> <span>${temp.cure.cure_cost } </span></li>
+					</c:forEach>
 					</ul>
+					<h4>${sessionScope.cart.total }</h4>
 				</div>
 				<div class="checkout-right-basket animated wow slideInRight" data-wow-delay=".5s">
-					<a href="single.jsp"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Continue Shopping</a>
+				<form id='form' class="form-horizontal" role="form" action="<c:url value='/OrderServlet'/>" method="post">
+					<input type="hidden" name="method" value="checkout">
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">tel</label>
+						<div class="col-sm-10">
+							<input size="20" type="tel" name="phone" class="form-control" placeholder="你的电话">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">date</label>
+		              	<input type="datetime" name="reserveTime" value="${nowDate }" class="form-control" id="mydatetimepicker" data-date-format="yyyy-mm-dd HH:ii" />
+					<script>
+						$('#mydatetimepicker').datetimepicker();
+					</script>
+					</div>
+					<br/>
+				</form>
+					<a href="<c:url value='/CureServlet?method=findAll' />"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>继续添加</a>
+					<a href="javascript:document.getElementById('form').submit();"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>前去结账</a>
 				</div>
-				<div class="clearfix"> </div>
+				
+			</div>
+			</c:otherwise>
+			</c:choose>
 			</div>
 		</div>
 	</div>
 <!-- //checkout -->
 <!-- footer -->
-	<div class="footer">
-		<div class="container">
-			<div class="footer-grids">
-				<div class="col-md-3 footer-grid animated wow slideInLeft" data-wow-delay=".5s">
-					<h3>关于我们</h3>
-					<p>戴超.2017年寒假作业<span>学习使用Bootstrap和Java Web</span></p>
-				</div>
-				<div class="col-md-3 footer-grid animated wow slideInLeft" data-wow-delay=".6s">
-					<h3>联系信息</h3>
-					<ul>
-						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Mangodai<span>China Jxau.</span></li>
-						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">965557340@qq.com</a></li>
-					</ul>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-			<div class="footer-logo animated wow slideInUp" data-wow-delay=".5s">
-				<h2><a href="index.jsp">Hospital<span>By MangoDai</span></a></h2>
-			</div>
-			<div class="copy-right animated wow slideInUp" data-wow-delay=".5s">
-				<p>Copyright &copy; 2017.By Mangodai.</p>
-			</div>
-		</div>
-	</div>
+<%@ include file="common/footer.jsp" %>
 <!-- //footer -->
 </body>
 </html>

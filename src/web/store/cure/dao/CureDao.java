@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import web.store.cure.domain.Cure;
@@ -18,9 +19,10 @@ public class CureDao {
 	private QueryRunner qr = new TxQueryRunner();
 	
 	public List<Cure> findAll(){
-		String sql = "select * from Cure";
+		String sql = "select * from cure";
 		try {
 			return qr.query(sql, new BeanListHandler<Cure>(Cure.class));
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
@@ -50,5 +52,14 @@ public class CureDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	public Cure findByID(String id) {
+		String sql = "select * from cure where cure_id=?";
+		try {
+			return qr.query(sql, new BeanHandler<Cure>(Cure.class), id);
+		} catch (SQLException e) {
+			throw new RuntimeException("通过id没有找到项目");//由于这里的id是数据库给的,所以一遍不会异常
+		}
+				
 	}
 }

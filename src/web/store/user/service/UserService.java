@@ -1,8 +1,11 @@
-package web.store.user.web.service;
+package web.store.user.service;
 
+import java.sql.SQLException;
+
+import web.store.user.dao.UserDao;
 import web.store.user.domain.User;
-import web.store.user.filer.UserException;
-import web.store.user.web.dao.UserDao;
+import web.store.user.web.filer.UserException;
+import cn.itcast.jdbc.JdbcUtils;
 
 /**
  * 
@@ -15,12 +18,22 @@ import web.store.user.web.dao.UserDao;
 public class UserService {
 	private UserDao dao = new UserDao();
 	
-	public User forgot(User form) throws UserException{
+	public void forgot(User form) throws UserException, SQLException{
 		User tmp = dao.findByEmail(form.getEmail());
 		if(tmp == null){
 			throw new UserException("用户名不存在");
 		}
-		return dao.resetPassword(tmp);		
+		tmp.setState(0);
+		try {//当你要修改用户的State 时候开启事务
+			JdbcUtils.beginTransaction();
+			dao.updateState(tmp);
+			tmp.setUser_password(form.getUser_password());
+			dao.resetPassword(tmp);
+			JdbcUtils.commitTransaction();
+		} catch (SQLException e) {
+			JdbcUtils.rollbackTransaction();
+			e.printStackTrace();
+		}	
 	}
 	
 	public User login(User form) throws UserException{
@@ -29,7 +42,11 @@ public class UserService {
 		if(tmp == null){
 			throw new UserException("用户名不存在");
 		}
-		return dao.Login(form);
+		tmp = dao.Login(form);
+		if(tmp == null){
+			throw new UserException("密码错误");
+		}
+		return tmp;
 	}
 	
 	
@@ -44,16 +61,18 @@ public class UserService {
 	public void addUser(User form) {
 		dao.addUser(form);
 	}
-	public void active(String code) throws UserException {
-		User tmp = dao.findByCode(code);
+	public void active(String email) throws UserException {
+		System.out.println(email);
+		User tmp = dao.findByEmail(email);
 		if(tmp == null ){
 			throw new UserException("利用该验证码没有找到对象,请重新验证");
 		}
-		if(!tmp.getCode().equals(code) ){
+		if(! tmp.getEmail().equals(email) ){
 			throw new UserException("你的验证码是错误的,请重新验证");
 		}
 		if(tmp.getState() == 1)
 			throw new UserException("已经激活过了,别点了");
+		tmp.setState(1);
 		dao.updateState(tmp);
 	}
 	public void login(String username, String password) {

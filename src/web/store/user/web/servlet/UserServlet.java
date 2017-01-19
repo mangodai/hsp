@@ -2,6 +2,7 @@ package web.store.user.web.servlet;
 
 import java.io.IOException;
 import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,13 +13,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.dbutils.handlers.BeanHandler;
-
 import web.store.cart.domain.Cart;
 import web.store.tools.NewTool;
 import web.store.user.domain.User;
-import web.store.user.filer.UserException;
-import web.store.user.web.service.UserService;
+import web.store.user.service.UserService;
+import web.store.user.web.filer.UserException;
 import cn.itcast.commons.CommonUtils;
 import cn.itcast.mail.Mail;
 import cn.itcast.mail.MailUtils;
@@ -37,19 +36,78 @@ public class UserServlet extends BaseServlet{
 	private UserService service = new UserService();
 	private NewTool news = new NewTool();
 	
+	/**
+	 * 
+	* @Title: reSendMail 
+	* @Description:  重新发送一份邮件 
+	* @param @param request
+	* @param @param response
+	* @param @return
+	* @param @throws ServletException
+	* @param @throws IOException    设定文件 
+	* @return String    返回类型 
+	* @throws
+	 */
+	public String reSendMail(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		User tmp = CommonUtils.toBean(request.getParameterMap(), User.class);
+		try {
+			sendMail(tmp);
+			request.setAttribute("msg_title", news.getValue("reSendMail_title"));
+			String reSend = MessageFormat.format(news.getValue("email_content"), tmp.getEmail());
+			request.setAttribute("msg_content", reSend);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		return "f:/msg.jsp";
+	}
+	
+	/**
+	 * 
+	* @Title: quit 
+	* @Description: 退出登录  
+	* @param @param request
+	* @param @param response
+	* @param @return
+	* @param @throws ServletException
+	* @param @throws IOException    设定文件 
+	* @return String    返回类型 
+	* @throws
+	 */
+	public String quit(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.getSession().invalidate();
+		return "f:/index.jsp";
+	}
+	
+	/**
+	 * 
+	* @Title: forgot 
+	* @Description: TODO 忘记密码 
+	* @param @param request
+	* @param @param response
+	* @param @return
+	* @param @throws ServletException
+	* @param @throws IOException    设定文件 
+	* @return String    返回类型 
+	* @throws
+	 */
 	public String forgot(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		User form = CommonUtils.toBean(request.getParameterMap(), User.class);
-		User tmp = null;
+		System.out.println(form);
 		try {
-			tmp = service.forgot(form);
-		} catch (UserException e) {
+			service.forgot(form);
+		} catch (Exception e) {
 			request.setAttribute("errors", e);
 			return "f:/forgot.jsp";
 		}
 		
 		try {
-			sendMail(tmp);
+			sendMail(form);//能走到这一步,代表邮箱和密码是正确的
+			request.setAttribute("msg_title", news.getValue("forgot_title"));
+			String reSend = MessageFormat.format(news.getValue("forgot_content"), form.getEmail());
+			request.setAttribute("msg_content", reSend);
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
@@ -79,6 +137,8 @@ public class UserServlet extends BaseServlet{
 			request.setAttribute("errors", e.getMessage());
 			return "f:/login.jsp";
 		}
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		request.getSession().setAttribute("nowDate", sdf.format(new Date()));
 		return "f:/index.jsp";
 	}
 	/**
@@ -95,10 +155,10 @@ public class UserServlet extends BaseServlet{
 	 */
 	public String active(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String code = request.getParameter("code");
+		String email = request.getParameter("email");
 		request.setAttribute("msg_title", news.getValue("active_title"));
 		try {
-			service.active(code);
+			service.active(email);
 			request.setAttribute("msg_content", news.getValue("acitve_successfully"));			
 		} catch (Exception e) {
 			request.setAttribute("msg_content", news.getValue("acitve_unsuccessfully")+e.getMessage());
@@ -138,7 +198,8 @@ public class UserServlet extends BaseServlet{
 			sendMail(form);
 		} catch (MessagingException e) {
 			request.setAttribute("msg_title", news.getValue("email_title"));
-			request.setAttribute("msg_content", news.getValue("email_content"));
+			String reSend = MessageFormat.format(news.getValue("email_content"), form.getEmail());
+			request.setAttribute("msg_content", reSend);
 			return "f:/msg.jsp";
 		}
 		
@@ -202,7 +263,7 @@ public class UserServlet extends BaseServlet{
 		String to = form.getEmail();//获取收件人
 		String subject = news.getValue("subject");//获取主题
 		String content = news.getValue("content");//获取邮件内容
-		content = MessageFormat.format(content, form.getCode(),form.getEmail());//替换{0}
+		content = MessageFormat.format(content, form.getCode(),form.getEmail());//替换{0}{1}
 		
 		Session session = MailUtils.createSession(host, uname, pwd);//得到session
 		Mail mail = new Mail(from, to, subject, content);//创建邮件对象

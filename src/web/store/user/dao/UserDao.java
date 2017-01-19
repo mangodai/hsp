@@ -1,4 +1,4 @@
-package web.store.user.web.dao;
+package web.store.user.dao;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -8,15 +8,15 @@ import org.apache.commons.dbutils.handlers.BeanHandler;
 
 import cn.itcast.jdbc.TxQueryRunner;
 import web.store.user.domain.User;
-import web.store.user.filer.UserException;
+import web.store.user.web.filer.UserException;
 
 public class UserDao {
 	private QueryRunner qr = new TxQueryRunner();
 	
-	public User resetPassword(User form ) throws UserException{
-		String sql = "UPDATE t_user set user_password=PASSWORD(?) where email=?";
+	public void resetPassword(User form ) throws UserException{
+		String sql = "UPDATE t_user SET user_password=PASSWORD(?) where email=?";
 		try {
-			return qr.query(sql, new BeanHandler<User>(User.class), form.getUser_password(), form.getEmail());
+			qr.update(sql, form.getUser_password(), form.getEmail());
 		} catch (SQLException e) {
 			throw new UserException(e);
 		}
@@ -35,11 +35,13 @@ public class UserDao {
 	 */
 	public User Login(User form) throws UserException{
 		String sql = "SELECT * FROM t_user WHERE email=? AND user_password=PASSWORD(?)";
+		User tmp = null;
 		try {
-			return qr.query(sql, new BeanHandler<User>(User.class), form.getEmail(), form.getUser_password());
+			tmp = qr.query(sql, new BeanHandler<User>(User.class), form.getEmail(), form.getUser_password());
 		} catch (SQLException e) {
 			throw new UserException("密码不对");
 		}
+		return tmp;
 	}
 	/**
 	 * 
@@ -89,9 +91,9 @@ public class UserDao {
 	}
 	
 	public void updateState(User tmp) {
-		String sql = "update t_user set state=1 where user_id=?";
+		String sql = "update t_user set state=? where user_id=?";
 		try {
-			qr.update(sql, tmp.getUser_id());
+			qr.update(sql, tmp.getState(),tmp.getUser_id());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
