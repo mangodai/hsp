@@ -9,6 +9,17 @@ import web.store.order.service.OrderService;
 public class OrderServiceTest {
 	OrderService service = new OrderService();
 	
+	@Test 
+	public void fun2(){
+		System.out.println();
+		Order order = service.findByOid(""+1000);
+//		order.setItemDetailList(service.);
+		System.out.println(order);
+		System.out.println(order.getItemDetailList().get(0));
+		System.out.println(order.getItemDetailList().get(1));
+//		System.out.println(order.getItemDetailList().toString());
+	}
+	
 	
 	@Test
 	public void fun1(){

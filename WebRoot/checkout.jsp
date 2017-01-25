@@ -81,7 +81,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<tr class="rem${i }">
 						<td class="invert">${i }</td>
 						<c:set var="i" value="${i+1 }"/>
-						<td class="invert-image"><a href="single.jsp"><img src="images/22.jpg" alt=" " class="img-responsive" /></a></td>
+						<td class="invert-image"><img src="${temp.cure.image }" width="140px" class="img-thumbnail img-responsive" alt="Responsive image" /></td>
 						<td class="invert">
 							 <div class="quantity"> 
 <!-- 								<div class="quantity-select">                           
@@ -112,13 +112,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<input type="hidden" name="method" value="checkout">
 					<div class="form-group">
 						<label for="inputEmail3" class="col-sm-2 control-label">tel</label>
-						<div class="col-sm-10">
-							<input size="20" type="tel" name="phone" class="form-control" placeholder="你的电话">
+						<div class="col-sm-7">
+							<input size="20" type="tel" name="phone" id="inputTel" class="form-control" placeholder="你的电话" onblur = "checkTel('inputTel')" >
+							<script type="text/javascript">
+								function checkTel(str){
+									var strTel = document.getElementById(str).value;
+									var re= /^1[34578]\d{9}$/;
+								    var result=strTel.match(re);
+							        if(result == null){
+							        	alert('电话号码错误');
+							        	return;
+							        }
+								}
+							</script>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputEmail3" class="col-sm-2 control-label">date</label>
-		              	<input type="datetime" name="reserveTime" value="${nowDate }" class="form-control" id="mydatetimepicker" data-date-format="yyyy-mm-dd HH:ii" />
+						<div class="col-sm-7">
+		              	<input type="datetime" name="reserveTime" value="${nowDate }" class="form-control" id="mydatetimepicker" data-date-format="yyyy/mm/dd HH:ii" />
+		              	</div>
 					<script>
 						$('#mydatetimepicker').datetimepicker();
 					</script>

@@ -51,7 +51,7 @@
 						<ul class="nav navbar-nav">
 							<li><a href="index.jsp">主页</a></li>	
 							<!-- Mega Menu -->
-							<li><a href="products.jsp">优秀技术</a></li>
+						<!-- 	<li><a href="products.jsp">优秀技术</a></li> -->
 							<li><a href="<c:url value='/OrderServlet?method=plan' />">查看安排</a></li>
 							<li><a href="<c:url value='/CureServlet?method=findAll' /> " >添加安排</a></li>
 							<li><a href="mail.jsp">联系我们</a></li>
@@ -59,7 +59,7 @@
 					</div>
 					</nav>
 				</div>
-				<div class="logo-nav-right">
+<!-- 				<div class="logo-nav-right">
 					<div class="search-box">
 						<div id="sb-search" class="sb-search">
 							<form>
@@ -69,23 +69,20 @@
 							</form>
 						</div>
 					</div>
-						<!-- search-scripts -->
+						search-scripts
 						<script src="js/classie.js"></script>
 						<script src="js/uisearch.js"></script>
 							<script>
 								new UISearch( document.getElementById( 'sb-search' ) );
 							</script>
-						<!-- //search-scripts -->
-				</div>
+						//search-scripts
+				</div> -->
 				<div class="header-right">
 					<div class="cart box_1">
 						<a href="checkout.jsp">
-							<h3> <div class="total">
-								<span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>
-								<img src="images/bag.png" alt="" />
-							</h3>
+							<img src="images/bag.png" alt="" />
 						</a>
-						<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
+<!-- 						<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p> -->
 						<div class="clearfix"> </div>
 					</div>	
 				</div>

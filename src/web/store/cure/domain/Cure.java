@@ -8,6 +8,7 @@ public class Cure {
 	private String image;
 	private int cid;
 	private String cure_extra;
+	
 	public int getCure_id() {
 		return cure_id;
 	}

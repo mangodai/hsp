@@ -26,6 +26,15 @@
     <servlet-name>OrderServlet</servlet-name>
     <servlet-class>web.store.order.web.servlet.OrderServlet</servlet-class>
   </servlet>
+  <servlet>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>EditOrderServlet</servlet-name>
+    <servlet-class>web.store.order.web.servlet.EditOrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditOrderServlet</servlet-name>
+    <url-pattern>/EditOrderServlet</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>UserServlet</servlet-name>
     <url-pattern>/UserServlet</url-pattern>

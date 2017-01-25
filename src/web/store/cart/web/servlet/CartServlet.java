@@ -10,7 +10,6 @@ import web.store.cart.domain.Cart;
 import web.store.cart.domain.CartItem;
 import web.store.cure.domain.Cure;
 import web.store.cure.service.CureService;
-import web.store.user.domain.User;
 import cn.itcast.servlet.BaseServlet;
 
 public class CartServlet extends BaseServlet{

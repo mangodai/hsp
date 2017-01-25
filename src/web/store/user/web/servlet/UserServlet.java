@@ -137,7 +137,7 @@ public class UserServlet extends BaseServlet{
 			request.setAttribute("errors", e.getMessage());
 			return "f:/login.jsp";
 		}
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 		request.getSession().setAttribute("nowDate", sdf.format(new Date()));
 		return "f:/index.jsp";
 	}

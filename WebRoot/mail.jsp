@@ -63,7 +63,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						
 					</form>
 				</div>
-				<div class="col-md-4 mail-grid-right animated wow slideInRight" data-wow-delay=".1s">
+				<div class="col-md-4 mail-grid-right animated wow slideInRight" data-wow-delay=".5s">
 					<!--<div class="mail-grid-right1">
 						<img src="images/3.png" alt=" " class="img-responsive" />
 						<h4>Rita Williumson <span>Manager</span></h4>

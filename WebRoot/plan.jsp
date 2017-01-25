@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -65,10 +66,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<thead>
 				<tr>
 					<th>序号</th>
-					<th>下单时间</th>
+					<th>预定时间</th>
 					<th>消费金额</th>
 					<th>联系电话</th>
 					<th>业务员</th>
+					<th>修改订单</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -76,10 +78,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<c:forEach items="${pageBean.list}" var="tmp" varStatus="i" >
 				<tr>
 					<td>${tmp.oid }</td>
-					<td>${tmp.ordertime }</td>
+					<td><fmt:formatDate value="${tmp.order_reserve }" pattern="yyyy-MM-dd HH:mm" /></td>
 					<td>${tmp.total }</td>
 					<td>${tmp.tel }</td>
 					<td>${tmp.user_id }</td>
+					<td><a href="<c:url value='/EditOrderServlet?method=edit&oid=${tmp.oid }' />" ><button type="button" class="btn btn-default">查看</button></a></td>
 				</tr>
 			</c:forEach>
 			</tbody>

@@ -86,6 +86,9 @@ public class OrderServlet extends BaseServlet{
 			throws ServletException, IOException {
 		//处理预定时间
 		String reserveTime = request.getParameter("reserveTime");
+		if(reserveTime == null){
+			reserveTime = new Date().toString();
+		}
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 		Date reserve = null;
 		try {
@@ -120,13 +123,13 @@ public class OrderServlet extends BaseServlet{
 			orderItemList.add(oi);
 		}
 		
-//		cart.clear();
 		service.checkout(order, orderItemList);
 		
 		//下单成功,返回消息页码
 		String content = MessageFormat.format(news.getValue("success_content"), tel, new Timestamp(order.getOrdertime().getTime()) );
 		request.setAttribute("msg_title", news.getValue("success_title"));
 		request.setAttribute("msg_content", content);
+		cart.clear();
 		return "f:/msg.jsp";
 	}
 	

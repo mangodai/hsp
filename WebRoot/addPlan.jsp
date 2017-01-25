@@ -59,8 +59,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="container">
 	<h3 class="title animated wow zoomIn" data-wow-delay=".5s">增加客户安排</h3>
 	<p class="est animated wow zoomIn" data-wow-delay=".5s">添加一个客户安排</p>
-
-             <table class="table table-bordered ">  
+		<div class="table-responsive">
+             <table class="table table-bordered">  
                  <thead>  
                      <tr class="success">  
                          <th>理疗名称</th>  
@@ -80,6 +80,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                  </c:forEach>
                  </tbody>  
              </table>  
+		</div>
 </div>
 <!-- //plan -->
 <!-- footer -->

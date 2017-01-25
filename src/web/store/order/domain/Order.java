@@ -1,6 +1,10 @@
 package web.store.order.domain;
 
 import java.util.Date;
+import java.util.List;
+
+import web.store.orderitem.domain.OrderItem;
+
 
 public class Order {
 	private int oid;
@@ -11,6 +15,37 @@ public class Order {
 	private String tel;
 	private String order_uid;
 	private Date order_reserve;
+	private int item_counts;
+	private List<OrderItem> orderItemList;//当前订单下所有条目
+	private List<ItemDetail> itemDetailList;//当前订单下所有条目
+	
+	
+	
+	public int getItem_counts() {
+		return item_counts;
+	}
+
+	public void setItem_counts(int item_counts) {
+		this.item_counts = item_counts;
+	}
+
+	public List<ItemDetail> getItemDetailList() {
+		return itemDetailList;
+	}
+
+	public void setItemDetailList(List<ItemDetail> itemDetailList) {
+		this.itemDetailList = itemDetailList;
+	}
+
+	public List<OrderItem> getOrderItemList() {
+		
+		return orderItemList;
+	}
+
+	public void setOrderItemList(List<OrderItem> orderItemList) {
+		this.orderItemList = orderItemList;
+	}
+	
 	public int getOid() {
 		return oid;
 	}
