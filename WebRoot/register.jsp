@@ -53,12 +53,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<p class="est animated wow zoomIn" data-wow-delay=".5s">通过这里,你可以注册一个账号,注意你的邮箱号是唯一的</p>
 			<div class="login-form-grids">
 				<h6 class="animated wow slideInUp" data-wow-delay=".5s">描述注册登录信息</h6>
-				<form class="animated wow slideInUp" data-wow-delay=".5s" action="<c:url value='/UserServlet'/>" method="post">
+				<form class="animated wow slideInUp" data-wow-delay=".5s" action="<c:url value='/UserServlet'/>" method="post"  onsubmit="return checkall()">
 					<input type="hidden" name="method" value="addUser"/>
-					<input type="text" name="user_name" placeholder="Your Name..." >${errors.user_name }
-					<input type="email" name="email" placeholder="Email Address" >${errors.email }
-					<input type="password" name="user_password" placeholder="Password"  >${errors.user_password }
+					<input type="text" id="user_name" name="user_name" placeholder="Your Name..." >${errors.user_name }
+					<input type="email" id="email" name="email" placeholder="Email Address" >${errors.email }
+					<input type="password" id="user_password" name="user_password" placeholder="Password"  >${errors.user_password }
 					<input type="password" placeholder="Password Confirmation"  >
+					<script type="text/javascript">
+					function checkall(){
+						var name = document.getElementById("user_name");
+						var email = document.getElementById("email");
+						var password = document.getElementById("user_password");
+						if(name.value=="" ||email.value=="" || password.value==""){
+						    alert("不可为空");
+						    return false;
+						}
+					}
+					</script>
 					<div class="register-check-box">
 						<div class="check">
 							<label class="checkbox"><input type="checkbox" name="checkbox"><i> </i>I accept the terms and conditions</label>
