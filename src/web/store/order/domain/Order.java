@@ -16,11 +16,20 @@ public class Order {
 	private String order_uid;
 	private Date order_reserve;
 	private int item_counts;
+	private String user_name;
 	private List<OrderItem> orderItemList;//当前订单下所有条目
 	private List<ItemDetail> itemDetailList;//当前订单下所有条目
 	
 	
 	
+	public String getUser_name() {
+		return user_name;
+	}
+
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+
 	public int getItem_counts() {
 		return item_counts;
 	}

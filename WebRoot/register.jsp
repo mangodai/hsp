@@ -64,7 +64,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						var name = document.getElementById("user_name");
 						var email = document.getElementById("email");
 						var password = document.getElementById("user_password");
-						if(name.value=="" ||email.value=="" || password.value==""){
+						var vcode = document.getElementById("verify_code");
+						if(name.value=="" ||email.value=="" || password.value=="" || vcode.value==""){
 						    alert("不可为空");
 						    return false;
 						}

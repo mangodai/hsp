@@ -58,6 +58,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<input type="email" name="email" placeholder="Email Address" >
 					<input type="password" name="user_password" placeholder="Password" >
 					<input type="password" placeholder="Password Confirmation"  >
+					<input type="text" id="verify_code" placeholder="验证码" onblur="checkVerify()"><img alt="验证码" src="<c:url value='/UserServlet?method=getVerify' />">
 					<input type="submit" value="sure">
 				</form>
 			</div>

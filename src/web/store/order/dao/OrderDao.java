@@ -94,7 +94,7 @@ public class OrderDao {
 	* @throws
 	 */
 	public List<Order> findAll(int begin, int end){
-		String sql = "SELECT * FROM orders ORDER BY order_reserve DESC LIMIT ?,?";
+		String sql = "SELECT * FROM orderplan ORDER BY order_reserve DESC LIMIT ?,?";
 		try {
 			return qr.query(sql, new BeanListHandler<Order>(Order.class), begin, end);
 		} catch (SQLException e) {

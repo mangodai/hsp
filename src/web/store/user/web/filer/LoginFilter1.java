@@ -21,7 +21,7 @@ import web.store.user.domain.User;
 				"/LoginFilter1", 
 				"/checkout.jsp"
 		}, 
-		servletNames = { "CartServlet" })
+		servletNames = { "CartServlet", "EditOrderServlet" })
 public class LoginFilter1 implements Filter {
 
     /**

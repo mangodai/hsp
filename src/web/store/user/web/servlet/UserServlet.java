@@ -1,10 +1,12 @@
 package web.store.user.web.servlet;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.mail.MessagingException;
@@ -22,6 +24,7 @@ import cn.itcast.commons.CommonUtils;
 import cn.itcast.mail.Mail;
 import cn.itcast.mail.MailUtils;
 import cn.itcast.servlet.BaseServlet;
+import cn.itcast.vcode.utils.VerifyCode;
 /**
  * 
 * @ClassName: UserServlet 
@@ -35,6 +38,28 @@ public class UserServlet extends BaseServlet{
 	private static final long serialVersionUID = 1L;
 	private UserService service = new UserService();
 	private NewTool news = new NewTool();
+	
+	public void setLocale(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String lang = request.getParameter("locale");
+		Locale locale = null;
+		if(lang.equals("en")){
+			locale = Locale.US;
+		} else {
+			locale = Locale.CHINA;
+		}
+		//默认中文
+		request.getSession().setAttribute("locale", locale);
+	}
+	
+	
+	public void getVerify(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		VerifyCode vc = new VerifyCode(); 
+		BufferedImage image = vc.getImage();
+		request.getSession().setAttribute("verify_code", vc.getText());
+		VerifyCode.output(image, response.getOutputStream());
+	}
 	
 	/**
 	 * 
@@ -191,7 +216,8 @@ public class UserServlet extends BaseServlet{
 			// 1. 保存错误信息
 			// 3. 转发到regist.jsp
 			request.setAttribute("errors",errors);
-			return "f:/regist.jsp";
+			System.out.println(errors.toString());
+			return "f:/register.jsp";
 		}
 		service.addUser(form);
 		try {

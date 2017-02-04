@@ -81,7 +81,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<td><fmt:formatDate value="${tmp.order_reserve }" pattern="yyyy-MM-dd HH:mm" /></td>
 					<td>${tmp.total }</td>
 					<td>${tmp.tel }</td>
-					<td>${tmp.user_id }</td>
+					<td>${tmp.user_name }</td>
 					<td><a href="<c:url value='/EditOrderServlet?method=edit&oid=${tmp.oid }' />" ><button type="button" class="btn btn-default">查看</button></a></td>
 				</tr>
 			</c:forEach>

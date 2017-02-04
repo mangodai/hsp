@@ -3,6 +3,8 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+Locale locale = (Locale) request.getSession().getAttribute("locale");
+ResourceBundle rb = ResourceBundle.getBundle("res", locale);
 %>
 
 <!DOCTYPE html>
@@ -50,7 +52,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="banner">
 		<div class="container">
 			<div class="banner-info animated wow zoomIn" data-wow-delay=".5s">
-				<h3>Online Hospital System</h3>
+				<h3><%=rb.getString("index_title") %></h3>
 				<h4><span>Free <i>Facility</i></span></h4>
 				<div class="wmuSlider example1">
 					<div class="wmuSliderWrapper">
